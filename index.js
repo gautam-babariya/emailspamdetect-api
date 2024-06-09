@@ -35,44 +35,16 @@ app.post('/predict',async (req, res) => {
     const pythonProcess = spawn('python', ['load_model.py', JSON.stringify(inputData)]);
     
     // Listen for data from Python script
-    // pythonProcess.stdout.on('data', (data) => {
-    //   var predictions = JSON.parse(data.toString());
-    //   if (predictions == '1') {
-    //     res.status(201).json('value');
-    //     }
-    //     else {
-    //     res.status(201).json('not spam');
-    //   }
-    // });
-
-    // try 
-    let dataBuffer = '';
-
-    // Listen for data from Python script
     pythonProcess.stdout.on('data', (data) => {
-      dataBuffer += data.toString();
-    });
-
-    // Listen for errors from Python script
-    pythonProcess.stderr.on('data', (data) => {
-      console.error(`Error from Python script: ${data.toString()}`);
-      res.status(500).send('Internal Server Error');
-    });
-
-    // Python script execution completed
-    pythonProcess.on('close', (code) => {
-      try {
-        const predictions = JSON.parse(dataBuffer.trim()); // Parse accumulated data
-        if (predictions === 1) {
-          res.status(200).json('spam');
-        } else {
-          res.status(200).json('not spam');
+      var predictions = JSON.parse(data.toString());
+      if (predictions == '1') {
+        res.status(201).json('value');
         }
-      } catch (error) {
-        console.error('Error parsing JSON:', error);
-        res.status(500).send('Internal Server Error');
+        else {
+        res.status(201).json('not spam');
       }
     });
+
 
     // Listen for errors from Python script
     pythonProcess.stderr.on('data', (data) => {
