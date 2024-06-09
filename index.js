@@ -3,23 +3,16 @@ const bodyParser = require('body-parser');
 const { spawn } = require('child_process');
 
 const app = express();
-const cors = require('cors');
 
-// cors code 
-const corsOptions = {
-  origin: 'http://localhost:5173',
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-//   res.setHeader('Access-Control-Max-Age', 2592000);
-//   next();
-// });
+var cors = require('cors')
+app.use(cors())
+// getdata from mongo 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+  res.setHeader('Access-Control-Max-Age', 2592000);
+  next();
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,7 +24,7 @@ app.get('/', (res, req) => {
 })
 
 // Define a route to handle predictions
-app.post('/predict', (req, res) => {
+app.post('/predict',async (req, res) => {
   // Sample input data
   try {
     const title = req.body;
