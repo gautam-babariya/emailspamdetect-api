@@ -31,7 +31,7 @@ app.get('/', (res, req) => {
 })
 
 // Define a route to handle predictions
-app.post('/predict', (req, res) => {
+app.post('/', (req, res) => {
   // Sample input data
   try {
     const title = req.body;
@@ -64,7 +64,7 @@ app.post('/predict', (req, res) => {
   }
 });
 
-app.options('/predict', cors(corsOptions));
+// app.options('/predict', cors(corsOptions));
 
 // Start the server
 const PORT = process.env.PORT || 3000;
