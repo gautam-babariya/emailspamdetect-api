@@ -7,16 +7,16 @@ const app = express();
 var cors = require('cors')
 app.use(cors())
 // getdata from mongo 
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
   res.setHeader('Access-Control-Max-Age', 2592000);
   next();
 });
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
  
 
 app.get('/', (res, req) => {
@@ -57,7 +57,6 @@ app.post('/predict',async (req, res) => {
   }
 });
 
-app.options('/predict', cors(corsOptions));
 
 // Start the server
 const PORT = process.env.PORT || 3000;
