@@ -14,12 +14,12 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-  res.setHeader('Access-Control-Max-Age', 2592000);
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+//   res.setHeader('Access-Control-Max-Age', 2592000);
+//   next();
+// });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
  
 
 app.get('/', (res, req) => {
-  req.send("hyy");
+  req.send("hy");
 })
 
 // Define a route to handle predictions
@@ -63,6 +63,8 @@ app.post('/predict', (req, res) => {
     res.status(500).send('Internal Servers Error');
   }
 });
+
+app.options('/predict', cors(corsOptions));
 
 // Start the server
 const PORT = process.env.PORT || 3000;
