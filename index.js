@@ -31,7 +31,7 @@ app.get('/', (res, req) => {
 })
 
 // Define a route to handle predictions
-app.post('/predict', (req, res) => {
+app.post('https://emailspamdetect-api.vercel.app/predict', (req, res) => {
   // Sample input data
   try {
     const title = req.body;
