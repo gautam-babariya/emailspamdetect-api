@@ -36,7 +36,8 @@ app.post('/predict',async (req, res) => {
     
     // Listen for data from Python script
     pythonProcess.stdout.on('data', (data) => {
-      var predictions = JSON.parse(data.toString());
+      // var predictions = JSON.parse(data.toString());
+      var predictions = 1;
       if (predictions == '1') {
         res.status(201).json('value');
         }
