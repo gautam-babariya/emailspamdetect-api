@@ -19,12 +19,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
  
 
-app.get('/', (res, req) => {
+app.get('/predict', (res, req) => {
   req.send("hy");
 })
 
 // Define a route to handle predictions
-app.post('/predict',async (req, res) => {
+app.post('/',async (req, res) => {
   // Sample input data
   try {
     const title = req.body;
