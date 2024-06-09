@@ -1,16 +1,13 @@
 {
     "version": 2,
+    "name": "food-app",
     "builds": [
-      {
-        "src": "api/*.js",
-        "use": "@vercel/node"
-      }
+        { "src": "index.js", "use": "@vercel/node"}
     ],
     "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "/api/$1"
-      }
+        {
+            "src": "/api/(.*)",
+            "dest": "/api/$1"
+          }
     ]
-  }
-  
+}
