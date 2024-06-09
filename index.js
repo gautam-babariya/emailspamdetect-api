@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
  
 
 app.get('/', (res, req) => {
-  req.send("hy");
+  req.send("hyy");
 })
 
 // Define a route to handle predictions
