@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET,POST');
   res.setHeader('Access-Control-Max-Age', 2592000);
   next();
 });
@@ -48,9 +48,9 @@ app.post('/predict',async (req, res) => {
     // res.status(201).json('spam');
 
     // Listen for errors from Python script
-    // pythonProcess.stderr.on('data', (data) => {
-    //   console.error(`Error from Python script: ${data.toString()}`);
-    // });
+    pythonProcess.stderr.on('data', (data) => {
+      console.error(`Error from Python script: ${data.toString()}`);
+    });
 
     
   } catch (error) {
