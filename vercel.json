@@ -2,9 +2,12 @@
     "version": 2,
     "name": "emailspam-detect",
     "builds": [
-        { "src": "index.js", "use": "@vercel/node"}
+        { "src": "index.js", "use": "@vercel/node"},
+        { "src": "load_model.py", "use": "@vercel/python" }
     ],
     "routes": [
+        { "src": "/api/(.*)", "dest": "/api/index.js" },
         { "src": "/(.*)", "dest": "/index.js"}
     ]
 }
+  
