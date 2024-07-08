@@ -33,19 +33,19 @@ app.post('/predict',async (req, res) => {
     
     // Spawn a Python process
     const pythonProcess = spawn('python3', ['../load_model.py', JSON.stringify(inputData)]);
-    res.status(201).json('spam');
     
     // Listen for data from Python script
-    // pythonProcess.stdout.on('data', (data) => {
-    //   var predictions = JSON.parse(data.toString());
-    //   if (predictions == '1') {
-    //     res.status(201).json('spam');
-    //     }
-    //     else {
-    //     res.status(201).json('not spam');
-    //   }
-    // });
-
+    pythonProcess.stdout.on('data', (data) => {
+      var predictions = JSON.parse(data.toString());
+      if (predictions == '1') {
+        res.status(201).json('spam');
+      }
+      else {
+        res.status(201).json('not spam');
+      }
+    });
+    
+    res.status(201).json('spam');
 
     // Listen for errors from Python script
     // pythonProcess.stderr.on('data', (data) => {
