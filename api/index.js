@@ -30,26 +30,27 @@ app.post('/predict',async (req, res) => {
     const title = req.body;
     const value = Object.keys(title)[0];
     const inputData = value;
-    
+    res.status(201).json('spam');
+
     // Spawn a Python process
-    const pythonProcess = spawn('python', ['load_model.py', JSON.stringify(inputData)]);
+    // const pythonProcess = spawn('python', ['load_model.py', JSON.stringify(inputData)]);
     
     // Listen for data from Python script
-    pythonProcess.stdout.on('data', (data) => {
-      var predictions = JSON.parse(data.toString());
-      if (predictions == '1') {
-        res.status(201).json('spam');
-        }
-        else {
-        res.status(201).json('not spam');
-      }
-    });
+    // pythonProcess.stdout.on('data', (data) => {
+    //   var predictions = JSON.parse(data.toString());
+    //   if (predictions == '1') {
+    //     res.status(201).json('spam');
+    //     }
+    //     else {
+    //     res.status(201).json('not spam');
+    //   }
+    // });
 
 
     // Listen for errors from Python script
-    pythonProcess.stderr.on('data', (data) => {
-      console.error(`Error from Python script: ${data.toString()}`);
-    });
+    // pythonProcess.stderr.on('data', (data) => {
+    //   console.error(`Error from Python script: ${data.toString()}`);
+    // });
 
     
   } catch (error) {
