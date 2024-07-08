@@ -30,10 +30,10 @@ app.post('/predict',async (req, res) => {
     const title = req.body;
     const value = Object.keys(title)[0];
     const inputData = value;
-    res.status(201).json('spam');
-
+    
     // Spawn a Python process
     const pythonProcess = spawn('python3', ['../load_model.py', JSON.stringify(inputData)]);
+    res.status(201).json('spam');
     
     // Listen for data from Python script
     // pythonProcess.stdout.on('data', (data) => {
