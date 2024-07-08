@@ -45,7 +45,7 @@ app.post('/predict',async (req, res) => {
       }
     });
     
-    res.status(201).json('spam');
+    // res.status(201).json('spam');
 
     // Listen for errors from Python script
     // pythonProcess.stderr.on('data', (data) => {
