@@ -45,11 +45,16 @@ app.post('/predict',async (req, res) => {
       }
     });
     
-    // res.status(201).json('spam');
-
     // Listen for errors from Python script
     pythonProcess.stderr.on('data', (data) => {
       console.error(`Error from Python script: ${data.toString()}`);
+    });
+
+    pythonProcess.on('exit', (code) => {
+      if (code !== 0) {
+        console.error(`Python script exited with code ${code}`);
+        res.status(500).send('Internal Server Error');
+      }
     });
 
     
