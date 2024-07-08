@@ -38,7 +38,7 @@ app.post('/predict',async (req, res) => {
     pythonProcess.stdout.on('data', (data) => {
       var predictions = JSON.parse(data.toString());
       if (predictions == '1') {
-        res.status(201).json('value');
+        res.status(201).json('spam');
         }
         else {
         res.status(201).json('not spam');
