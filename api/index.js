@@ -20,7 +20,7 @@ app.use((req, res, next) => {
  
 
 app.get('/', (res, req) => {
-  req.send("hy");
+  req.send("hyy");
 })
 
 // Define a route to handle predictions
