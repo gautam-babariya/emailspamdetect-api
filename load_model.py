@@ -11,7 +11,7 @@ ps = PorterStemmer()
 
 # for load model
 try:
-    model = joblib.load('../model_emailspam.pkl')
+    model = joblib.load('./model_emailspam.pkl')
 except FileNotFoundError:
     print("Error: Model file 'model.pkl' not found.")
     sys.exit(1)
@@ -22,7 +22,7 @@ except Exception as e:
 
 # for load vectorizer
 try:
-    tfidf = joblib.load('../vectorizer_emailspam.pkl')
+    tfidf = joblib.load('./vectorizer_emailspam.pkl')
 except FileNotFoundError:
     print("Error: Model file 'vectorizer_emailspam.pkl' not found.")
     sys.exit(1)
