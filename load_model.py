@@ -9,6 +9,7 @@ from nltk.stem.porter import PorterStemmer
 
 ps = PorterStemmer()
 nltk.download('punkt')
+nltk.download('stopwords')
 
 # for load model
 try:
