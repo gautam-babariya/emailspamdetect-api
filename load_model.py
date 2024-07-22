@@ -8,6 +8,7 @@ import string
 from nltk.stem.porter import PorterStemmer
 
 ps = PorterStemmer()
+nltk.download('punkt')
 
 # for load model
 try:
